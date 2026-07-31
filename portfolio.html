@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arfa Eamna — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b14;
+  --bg-alt:#0f0f1a;
+  --panel:rgba(255,255,255,0.04);
+  --panel-border:rgba(255,255,255,0.08);
+  --violet:#7c5cff;
+  --violet-dim:#5b45b8;
+  --cyan:#22d3ee;
+  --pink:#f472b6;
+  --text:#f1f0f7;
+  --muted:#9491aa;
+  --code-bg:#11101c;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+
+a{color:inherit; text-decoration:none;}
+::selection{background:var(--violet); color:#fff;}
+
+/* ---------- background glow ---------- */
+.glow{
+  position:fixed;
+  top:-200px; left:50%;
+  transform:translateX(-50%);
+  width:900px; height:700px;
+  background:radial-gradient(ellipse at center, rgba(124,92,255,0.22), transparent 70%);
+  z-index:0;
+  pointer-events:none;
+}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed; top:0; left:0; right:0;
+  z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 6%;
+  background:rgba(11,11,20,0.6);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:0.02em;
+}
+.logo span{color:var(--violet);}
+.nav-links{display:flex; gap:34px; list-style:none;}
+.nav-links a{
+  font-size:14px; font-weight:500; color:var(--muted);
+  position:relative; transition:color 0.25s ease;
+}
+.nav-links a::after{
+  content:''; position:absolute; left:0; bottom:-6px;
+  width:0; height:1.5px; background:var(--cyan);
+  transition:width 0.25s ease;
+}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  padding:9px 20px; border-radius:999px;
+  background:linear-gradient(135deg, var(--violet), var(--pink));
+  font-size:13px; font-weight:600;
+  box-shadow:0 0 20px rgba(124,92,255,0.35);
+}
+.burger{display:none; font-size:24px; cursor:pointer; z-index:60;}
+
+@media (max-width:860px){
+  .nav-links{
+    position:fixed; top:0; right:-100%; height:100vh; width:70%;
+    background:var(--bg-alt); flex-direction:column;
+    justify-content:center; align-items:center; gap:30px;
+    transition:right 0.35s ease;
+    border-left:1px solid var(--panel-border);
+  }
+  .nav-links.open{right:0;}
+  .nav-cta{display:none;}
+  .burger{display:block;}
+}
+
+/* ---------- section shell ---------- */
+section{position:relative; z-index:1; padding:120px 6% 40px;}
+.section-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px; color:var(--cyan);
+  letter-spacing:0.05em;
+  margin-bottom:10px;
+}
+.section-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(28px,4vw,42px);
+  font-weight:700;
+  margin-bottom:48px;
+}
+
+/* ---------- hero ---------- */
+#hero{
+  min-height:100vh;
+  display:flex; align-items:center;
+  padding-top:100px;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:60px;
+  align-items:center;
+  width:100%;
+}
+@media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:14px; color:var(--cyan);
+  margin-bottom:18px;
+  display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{
+  content:''; width:8px; height:8px; border-radius:50%;
+  background:var(--cyan); box-shadow:0 0 10px var(--cyan);
+}
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:clamp(36px,5.5vw,58px);
+  line-height:1.08;
+  margin-bottom:20px;
+}
+.hero h1 .grad{
+  background:linear-gradient(135deg, var(--violet), var(--cyan));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hero p{
+  color:var(--muted);
+  font-size:16px;
+  max-width:480px;
+  line-height:1.7;
+  margin-bottom:32px;
+}
+.hero-btns{display:flex; gap:16px; flex-wrap:wrap;}
+.btn{
+  padding:13px 26px; border-radius:12px;
+  font-weight:600; font-size:14px;
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+  display:inline-block;
+}
+.btn-primary{
+  background:linear-gradient(135deg, var(--violet), var(--pink));
+  box-shadow:0 10px 30px -8px rgba(124,92,255,0.6);
+}
+.btn-primary:hover{transform:translateY(-3px); box-shadow:0 14px 34px -6px rgba(124,92,255,0.75);}
+.btn-ghost{
+  border:1px solid var(--panel-border);
+  background:var(--panel);
+  color:var(--text);
+}
+.btn-ghost:hover{border-color:var(--cyan); color:var(--cyan); transform:translateY(-3px);}
+
+/* code editor mock */
+.editor{
+  background:var(--code-bg);
+  border:1px solid var(--panel-border);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+}
+.editor-bar{
+  display:flex; align-items:center; gap:8px;
+  padding:12px 16px;
+  background:rgba(255,255,255,0.03);
+  border-bottom:1px solid var(--panel-border);
+}
+.dot{width:11px; height:11px; border-radius:50%;}
+.dot.r{background:#ff5f57;} .dot.y{background:#febc2e;} .dot.g{background:#28c840;}
+.editor-title{
+  margin-left:10px; font-family:'JetBrains Mono',monospace;
+  font-size:12px; color:var(--muted);
+}
+.editor pre{
+  padding:24px; font-family:'JetBrains Mono',monospace;
+  font-size:13.5px; line-height:1.9; overflow-x:auto;
+  min-height:280px;
+}
+.tok-kw{color:#c586c0;} .tok-type{color:var(--cyan);} .tok-str{color:#ce9178;}
+.tok-prop{color:#9cdcfe;} .tok-com{color:#6a7280;} .tok-fn{color:#dcdcaa;}
+.cursor{display:inline-block; width:8px; background:var(--cyan); animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* ---------- about ---------- */
+.about-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;
+}
+@media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
+.about-text p{color:var(--muted); line-height:1.85; margin-bottom:16px; font-size:15.5px;}
+.about-text strong{color:var(--text);}
+.fact-card{
+  background:var(--panel); border:1px solid var(--panel-border);
+  border-radius:16px; padding:26px;
+  display:grid; grid-template-columns:1fr 1fr; gap:20px;
+}
+.fact{padding:6px 0;}
+.fact-label{
+  font-family:'JetBrains Mono',monospace; font-size:11px;
+  color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;
+  margin-bottom:6px;
+}
+.fact-value{font-weight:600; font-size:15px;}
+
+/* ---------- skills ---------- */
+.skills-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:16px;
+}
+.skill-card{
+  background:var(--panel); border:1px solid var(--panel-border);
+  border-radius:14px; padding:22px 18px;
+  text-align:center;
+  transition:transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.skill-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--violet);
+  background:rgba(124,92,255,0.08);
+}
+.skill-icon{font-size:26px; margin-bottom:10px;}
+.skill-name{font-weight:600; font-size:14px; margin-bottom:4px;}
+.skill-bar{
+  height:4px; border-radius:99px; background:rgba(255,255,255,0.08);
+  margin-top:10px; overflow:hidden;
+}
+.skill-bar-fill{
+  height:100%; border-radius:99px;
+  background:linear-gradient(90deg, var(--violet), var(--cyan));
+  width:0%; transition:width 1.2s cubic-bezier(.2,.9,.3,1);
+}
+
+/* ---------- projects ---------- */
+.projects-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:26px;
+}
+.project-card{
+  background:var(--panel); border:1px solid var(--panel-border);
+  border-radius:18px; overflow:hidden;
+  transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display:flex; flex-direction:column;
+}
+.project-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(124,92,255,0.4);
+  box-shadow:0 20px 50px -18px rgba(124,92,255,0.4);
+}
+.project-top{
+  height:140px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:13px; color:rgba(255,255,255,0.7);
+  position:relative; overflow:hidden;
+}
+.project-top::before{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg, var(--violet-dim), var(--bg-alt));
+  opacity:0.9;
+}
+.project-top span{position:relative; z-index:1;}
+.project-body{padding:22px; display:flex; flex-direction:column; gap:12px; flex:1;}
+.project-body h3{font-family:'Space Grotesk',sans-serif; font-size:19px;}
+.project-body p{color:var(--muted); font-size:14px; line-height:1.7;}
+.tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto;}
+.tag{
+  font-family:'JetBrains Mono',monospace; font-size:11px;
+  padding:5px 10px; border-radius:999px;
+  background:rgba(34,211,238,0.1); color:var(--cyan);
+  border:1px solid rgba(34,211,238,0.25);
+}
+.project-link{
+  font-size:13px; font-weight:600; color:var(--violet);
+  display:inline-flex; align-items:center; gap:6px; margin-top:4px;
+}
+.project-link:hover{color:var(--cyan);}
+
+/* ---------- resume ---------- */
+.resume-card{
+  background:var(--panel); border:1px solid var(--panel-border);
+  border-radius:20px; padding:44px;
+  display:flex; align-items:center; justify-content:space-between; gap:30px;
+  flex-wrap:wrap;
+}
+.resume-card h3{font-family:'Space Grotesk',sans-serif; font-size:24px; margin-bottom:10px;}
+.resume-card p{color:var(--muted); max-width:420px; line-height:1.7;}
+.timeline{margin-top:50px; display:grid; gap:22px;}
+.tl-item{
+  display:grid; grid-template-columns:120px 1fr; gap:20px;
+  padding-bottom:22px; border-bottom:1px solid var(--panel-border);
+}
+.tl-year{
+  font-family:'JetBrains Mono',monospace; color:var(--cyan); font-size:13px;
+}
+.tl-item h4{font-size:16px; margin-bottom:6px;}
+.tl-item p{color:var(--muted); font-size:14px; line-height:1.6;}
+
+/* ---------- contact ---------- */
+.contact-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:50px;
+}
+@media (max-width:860px){ .contact-grid{grid-template-columns:1fr;} }
+.contact-info p{color:var(--muted); line-height:1.8; margin-bottom:24px;}
+.contact-item{
+  display:flex; align-items:center; gap:14px;
+  padding:14px 0; border-bottom:1px solid var(--panel-border);
+}
+.contact-icon{
+  width:38px; height:38px; border-radius:10px;
+  background:rgba(124,92,255,0.12); color:var(--violet);
+  display:flex; align-items:center; justify-content:center; font-size:16px;
+}
+.form-group{margin-bottom:18px;}
+.form-group label{
+  display:block; font-size:12px; color:var(--muted); margin-bottom:8px;
+  font-family:'JetBrains Mono',monospace; letter-spacing:0.04em;
+}
+.form-group input, .form-group textarea{
+  width:100%; padding:13px 16px; border-radius:10px;
+  background:rgba(255,255,255,0.03); border:1px solid var(--panel-border);
+  color:var(--text); font-family:'Inter',sans-serif; font-size:14px;
+  transition:border-color 0.2s ease;
+}
+.form-group input:focus, .form-group textarea:focus{
+  outline:none; border-color:var(--violet);
+}
+.form-group textarea{resize:vertical; min-height:110px;}
+.form-note{font-size:12px; color:var(--muted); margin-top:10px;}
+
+footer{
+  text-align:center; padding:40px 6px; color:var(--muted); font-size:13px;
+  border-top:1px solid var(--panel-border);
+}
+footer .heart{color:var(--pink);}
+
+/* scroll reveal */
+.reveal{opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease;}
+.reveal.show{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav>
+  <div class="logo">AE<span>.</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's Talk</a>
+  <div class="burger" id="burger">☰</div>
+</nav>
+
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">AVAILABLE FOR OPPORTUNITIES</div>
+      <h1>Hi, I'm Arfa Eamna —<br>I build with <span class="grad">.NET MVC</span><br>& love the frontend.</h1>
+      <p>BSCS student at Islamia University of Bahawalpur (RYK Campus), currently in 7th semester. Full-stack developer who mainly ships in ASP.NET MVC, but comes alive when it's time to design the interface.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#resume" class="btn btn-ghost">Download Resume</a>
+      </div>
+    </div>
+    <div class="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="editor-title">Developer.cs</div>
+      </div>
+      <pre id="typedCode"></pre>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-tag">01 · About</div>
+  <h2 class="section-title reveal">Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm <strong>Arfa Eamna</strong>, a BSCS undergrad at <strong>Islamia University of Bahawalpur, RYK Campus</strong>, currently in my <strong>7th semester</strong>. Over the past few months I've been deep in self-practice, building real ASP.NET MVC projects end-to-end — database, backend, and UI.</p>
+      <p>My day-to-day stack is <strong>.NET MVC</strong>, but frontend is where I genuinely enjoy the work — turning a plain CRUD screen into something that feels premium and intentional is my favorite part of any build.</p>
+      <p>Right now I'm building <strong>FabricStock</strong>, a full inventory management system for the fabric and textile trade, as a serious self-practice project alongside my coursework.</p>
+    </div>
+    <div class="fact-card reveal">
+      <div class="fact">
+        <div class="fact-label">Education</div>
+        <div class="fact-value">BSCS — 7th Semester</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Campus</div>
+        <div class="fact-value">IUB, RYK</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Focus</div>
+        <div class="fact-value">.NET MVC + Frontend</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Status</div>
+        <div class="fact-value">Actively Building</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-tag">02 · Skills</div>
+  <h2 class="section-title reveal">Tools I Work With</h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal" data-level="88">
+      <div class="skill-icon">🧩</div>
+      <div class="skill-name">ASP.NET MVC</div>
+      <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+    </div>
+    <div class="skill-card reveal" data-level="80">
+      <div class="skill-icon">💻</div>
+      <div class="skill-name">C#</div>
+      <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+    </div>
+    <div class="skill-card reveal" data-level="82">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">SQL Server</div>
+      <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+    </div>
+    <div class="skill-card reveal" data-level="75">
+      <div class="skill-icon">🔗</div>
+      <div class="skill-name">Entity Framework</div>
+      <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+    </div>
+    <div class="skill-card reveal" data-level="90">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">HTML / CSS</div>
+      <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+    </div>
+    <div class="skill-card reveal" data-level="85">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">JavaScript</div>
+      <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+    </div>
+    <div class="skill-card reveal" data-level="78">
+      <div class="skill-icon">🅱️</div>
+      <div class="skill-name">Bootstrap 5</div>
+      <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+    </div>
+    <div class="skill-card reveal" data-level="70">
+      <div class="skill-icon">🔧</div>
+      <div class="skill-name">Git & GitHub</div>
+      <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-tag">03 · Projects</div>
+  <h2 class="section-title reveal">Things I've Built</h2>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-top"><span>&lt;FabricStock/&gt;</span></div>
+      <div class="project-body">
+        <h3>FabricStock</h3>
+        <p>A full inventory management system for the fabric & textile trade, built with ASP.NET MVC 5. Handles Gate Entry / GRN, warehouse verification, and audit logging with a unified premium indigo-violet UI.</p>
+        <div class="tag-row">
+          <span class="tag">ASP.NET MVC</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">Entity Framework</span>
+          <span class="tag">Bootstrap 5</span>
+        </div>
+        <a href="#" class="project-link">View Case Study →</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-top"><span>&lt;ProjectTwo/&gt;</span></div>
+      <div class="project-body">
+        <h3>Project Two — replace with your title</h3>
+        <p>Short description of the project goes here: what problem it solves and what you built. Swap this text for your real second project.</p>
+        <div class="tag-row">
+          <span class="tag">Your Stack</span>
+          <span class="tag">Here</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-top"><span>&lt;ProjectThree/&gt;</span></div>
+      <div class="project-body">
+        <h3>Project Three — replace with your title</h3>
+        <p>Another slot ready for your next build. Add a live link or GitHub repo once it's ready to share.</p>
+        <div class="tag-row">
+          <span class="tag">Your Stack</span>
+          <span class="tag">Here</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="section-tag">04 · Resume</div>
+  <h2 class="section-title reveal">Experience & Education</h2>
+  <div class="resume-card reveal">
+    <div>
+      <h3>Full Resume, One Click Away</h3>
+      <p>Download the complete PDF for full details on my education, projects, and skills.</p>
+    </div>
+    <a href="#" class="btn btn-primary">Download PDF</a>
+  </div>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-year">2023 — Present</div>
+      <div>
+        <h4>BSCS, Islamia University of Bahawalpur (RYK Campus)</h4>
+        <p>Currently in 7th semester, coursework spanning algorithms, databases, AI, and web development.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2026</div>
+      <div>
+        <h4>Self-Practice — ASP.NET MVC Projects</h4>
+        <p>Building production-style full-stack projects independently, including FabricStock, to sharpen real-world development skills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-tag">05 · Contact</div>
+  <h2 class="section-title reveal">Let's Build Something</h2>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <p>Open to internships, collaborations, and frontend-heavy .NET projects. Reach out — I usually reply quickly.</p>
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div>your.email@example.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>Rahim Yar Khan, Punjab, Pakistan</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🔗</div>
+        <div>github.com/your-username</div>
+      </div>
+    </div>
+    <form class="reveal" onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='This is a static demo form — connect it to a backend or a service like Formspree to make it live.';">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell me about your project..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Send Message</button>
+      <div class="form-note"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  Built with <span class="heart">♥</span> by Arfa Eamna — © 2026
+</footer>
+
+<script>
+// mobile nav
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', ()=> navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> navLinks.classList.remove('open')));
+
+// scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+      if(entry.target.classList.contains('skill-card')){
+        const fill = entry.target.querySelector('.skill-bar-fill');
+        const level = entry.target.dataset.level;
+        requestAnimationFrame(()=> fill.style.width = level + '%');
+      }
+      io.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.15});
+reveals.forEach(el=> io.observe(el));
+
+// typewriter code effect
+const codeLines = [
+  {t:'kw', v:'public'}, {t:'', v:' '}, {t:'kw', v:'class'}, {t:'', v:' '},
+  {t:'type', v:'Developer'}, {t:'', v:'\n{\n    '},
+  {t:'kw', v:'public'}, {t:'', v:' '}, {t:'type', v:'string'}, {t:'', v:' '},
+  {t:'prop', v:'Name'}, {t:'', v:' = '}, {t:'str', v:'"Arfa Eamna"'}, {t:'', v:';\n    '},
+  {t:'kw', v:'public'}, {t:'', v:' '}, {t:'type', v:'string'}, {t:'', v:' '},
+  {t:'prop', v:'Role'}, {t:'', v:' = '}, {t:'str', v:'"Full Stack .NET Developer"'}, {t:'', v:';\n    '},
+  {t:'kw', v:'public'}, {t:'', v:' '}, {t:'type', v:'string'}, {t:'', v:' '},
+  {t:'prop', v:'University'}, {t:'', v:' = '}, {t:'str', v:'"IUB, RYK Campus"'}, {t:'', v:';\n    '},
+  {t:'kw', v:'public'}, {t:'', v:' '}, {t:'type', v:'string'}, {t:'', v:' '},
+  {t:'prop', v:'Semester'}, {t:'', v:' = '}, {t:'str', v:'"7th"'}, {t:'', v:';\n\n    '},
+  {t:'com', v:'// currently building FabricStock'}, {t:'', v:'\n    '},
+  {t:'kw', v:'public'}, {t:'', v:' '}, {t:'type', v:'void'}, {t:'', v:' '},
+  {t:'fn', v:'SayHello'}, {t:'', v:'()\n    {\n        '},
+  {t:'fn', v:'Console'}, {t:'', v:'.'}, {t:'fn', v:'WriteLine'}, {t:'', v:'('},
+  {t:'str', v:'"Thanks for visiting my portfolio!"'}, {t:'', v:');\n    }\n}'}
+];
+
+const pre = document.getElementById('typedCode');
+let flatText = '';
+codeLines.forEach(seg => flatText += seg.v);
+
+function tokenClass(t){
+  switch(t){
+    case 'kw': return 'tok-kw';
+    case 'type': return 'tok-type';
+    case 'str': return 'tok-str';
+    case 'prop': return 'tok-prop';
+    case 'com': return 'tok-com';
+    case 'fn': return 'tok-fn';
+    default: return '';
+  }
+}
+
+let charIndex = 0;
+let segIndex = 0;
+let segCharIndex = 0;
+
+function typeStep(){
+  if(segIndex >= codeLines.length){
+    pre.querySelector('.cursor')?.remove();
+    const c = document.createElement('span');
+    c.className = 'cursor';
+    c.textContent = '\u00A0';
+    pre.appendChild(c);
+    return;
+  }
+  const seg = codeLines[segIndex];
+  segCharIndex++;
+  renderTyped();
+  if(segCharIndex >= seg.v.length){
+    segIndex++;
+    segCharIndex = 0;
+  }
+  setTimeout(typeStep, 14);
+}
+
+function renderTyped(){
+  let html = '';
+  for(let i=0; i<segIndex; i++){
+    const seg = codeLines[i];
+    html += `<span class="${tokenClass(seg.t)}">${escapeHtml(seg.v)}</span>`;
+  }
+  if(segIndex < codeLines.length){
+    const seg = codeLines[segIndex];
+    html += `<span class="${tokenClass(seg.t)}">${escapeHtml(seg.v.slice(0, segCharIndex))}</span>`;
+  }
+  html += '<span class="cursor">\u00A0</span>';
+  pre.innerHTML = html;
+}
+
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+setTimeout(typeStep, 400);
+</script>
+
+</body>
+</html>
