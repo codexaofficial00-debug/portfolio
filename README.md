@@ -1,4 +1,4 @@
-# Arfa Eamna — Personal Portfolio
+# Arfa Eaman — Personal Portfolio
 
 A modern, premium personal portfolio website built with **HTML, CSS, and JavaScript** — no frameworks, no build step, just open and go.
 
@@ -73,12 +73,12 @@ Before publishing, update the following placeholders in `portfolio.html`:
 
 ## 📇 Contact
 
-**Arfa Eamna**
+**Arfa Eaman**
 BSCS Student — Islamia University of Bahawalpur (RYK Campus)
 Full Stack Developer (.NET MVC) | Frontend Enthusiast
 
-- 📧 your.email@example.com
-- 🔗 github.com/your-username
+- 📧 arfacodes@gmail.com
+- 🔗 github.com/codexaofficial00-debug
 - 📍 Rahim Yar Khan, Punjab, Pakistan
 
 ---
