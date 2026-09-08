@@ -73,7 +73,7 @@ Before publishing, update the following placeholders in `portfolio.html`:
 
 ## 📇 Contact
 
-**Arfa Eaman**
+**Arfa Eman**
 BSCS Student — Islamia University of Bahawalpur (RYK Campus)
 Full Stack Developer (.NET MVC) | Frontend Enthusiast
 
