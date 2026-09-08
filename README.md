@@ -1,4 +1,4 @@
-# Arfa Eaman — Personal Portfolio
+# Arfa Eman — Personal Portfolio
 
 A modern, premium personal portfolio website built with **HTML, CSS, and JavaScript** — no frameworks, no build step, just open and go.
 
