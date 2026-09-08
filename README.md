@@ -2,7 +2,7 @@
 
 A modern, premium personal portfolio website built with **HTML, CSS, and JavaScript** — no frameworks, no build step, just open and go.
 
-🔗 **Live Demo:** _[add your GitHub Pages / Netlify link here once deployed]_
+🔗 **Live Demo:** _https://github.com/codexaofficial00-debug_
 
 ![Made with HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![Made with CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
