@@ -83,19 +83,37 @@ nav{
   font-size:13px; font-weight:600;
   box-shadow:0 0 20px rgba(124,92,255,0.35);
 }
-.burger{display:none; font-size:24px; cursor:pointer; z-index:60;}
+.burger{
+  display:none; font-size:22px; cursor:pointer; z-index:60;
+  width:44px; height:44px; align-items:center; justify-content:center;
+  border-radius:10px;
+}
+.burger:active{background:rgba(255,255,255,0.06);}
+.nav-cta-mobile{display:none;}
 
 @media (max-width:860px){
   .nav-links{
-    position:fixed; top:0; right:-100%; height:100vh; width:70%;
+    position:fixed; top:0; right:-100%; height:100vh; width:78%; max-width:320px;
     background:var(--bg-alt); flex-direction:column;
-    justify-content:center; align-items:center; gap:30px;
+    justify-content:center; align-items:stretch; gap:8px;
+    padding:0 36px;
     transition:right 0.35s ease;
     border-left:1px solid var(--panel-border);
   }
   .nav-links.open{right:0;}
+  .nav-links a{
+    font-size:17px; padding:14px 4px; text-align:center;
+    border-bottom:1px solid var(--panel-border);
+  }
+  .nav-links a::after{display:none;}
   .nav-cta{display:none;}
-  .burger{display:block;}
+  .nav-cta-mobile{
+    display:block; margin-top:18px; text-align:center;
+    padding:13px 20px; border-radius:12px;
+    background:linear-gradient(135deg, var(--violet), var(--pink));
+    font-size:15px; font-weight:600;
+  }
+  .burger{display:flex;}
 }
 
 /* ---------- section shell ---------- */
@@ -176,6 +194,19 @@ section{position:relative; z-index:1; padding:120px 6% 40px;}
   color:var(--text);
 }
 .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan); transform:translateY(-3px);}
+
+@media (max-width:600px){
+  section{padding:90px 5.5% 30px;}
+  .hero-btns{flex-direction:column; align-items:stretch; gap:12px;}
+  .hero-btns .btn{width:100%; text-align:center; padding:15px 22px;}
+  .resume-card{flex-direction:column; align-items:flex-start; padding:30px 26px;}
+  .resume-card .btn{width:100%; text-align:center;}
+  .fact-card{grid-template-columns:1fr 1fr; padding:22px;}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
+  .tl-item{grid-template-columns:1fr; gap:6px;}
+  .contact-icon{width:42px; height:42px; font-size:17px;}
+  .see-all-btn, .project-link{padding-top:2px;}
+}
 
 /* code editor mock */
 .editor{
@@ -299,6 +330,39 @@ section{position:relative; z-index:1; padding:120px 6% 40px;}
 }
 .project-link:hover{color:var(--cyan);}
 
+/* ---------- see-all-projects card ---------- */
+.see-all-card{
+  background:linear-gradient(160deg, rgba(124,92,255,0.14), rgba(34,211,238,0.06));
+  border:1px solid rgba(124,92,255,0.35);
+  border-radius:18px;
+  padding:36px 30px;
+  display:flex; flex-direction:column; align-items:flex-start; gap:14px;
+  justify-content:center;
+  transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.see-all-card:hover{
+  transform:translateY(-8px);
+  border-color:var(--cyan);
+  box-shadow:0 20px 50px -18px rgba(34,211,238,0.35);
+}
+.see-all-icon{
+  width:48px; height:48px; border-radius:12px;
+  background:rgba(124,92,255,0.18);
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px;
+}
+.see-all-card h3{font-family:'Space Grotesk',sans-serif; font-size:20px;}
+.see-all-card p{color:var(--muted); font-size:14px; line-height:1.7;}
+.see-all-btn{
+  margin-top:6px;
+  padding:11px 22px; border-radius:10px;
+  background:linear-gradient(135deg, var(--violet), var(--cyan));
+  font-size:13.5px; font-weight:600; color:#0b0b14;
+  display:inline-flex; align-items:center; gap:8px;
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+.see-all-btn:hover{transform:translateY(-2px); box-shadow:0 10px 26px -8px rgba(34,211,238,0.5);}
+
 /* ---------- resume ---------- */
 .resume-card{
   background:var(--panel); border:1px solid var(--panel-border);
@@ -374,6 +438,7 @@ footer .heart{color:var(--pink);}
     <li><a href="#projects">Projects</a></li>
     <li><a href="#resume">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta-mobile">Let's Talk</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Let's Talk</a>
   <div class="burger" id="burger">☰</div>
@@ -384,10 +449,10 @@ footer .heart{color:var(--pink);}
     <div>
       <div class="eyebrow">AVAILABLE FOR OPPORTUNITIES</div>
       <h1>Hi, I'm Arfa Eman —<br>I build with <span class="grad">.NET MVC</span><br>& love the frontend.</h1>
-      <p>BSCS student at Islamia University of Bahawalpur (RYK Campus), currently in 7th semester. Full-stack developer who mainly ships in ASP.NET MVC, but comes alive when it's time to design the interface.</p>
+      <p>BSCS student at Islamia University of Bahawalpur (RYK Campus), currently in 7th semester. Full-stack developer who mainly ships in ASP.NET MVC, but comes alive when it's time to design the interface. Alongside backend systems, I also design and build attractive, user-friendly websites.</p>
       <div class="hero-btns">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#resume" class="btn btn-ghost">Download Resume</a>
+        <a href="https://drive.google.com/drive/folders/19iJG0hQelVF9HAvemzdAbyphq91dhT6e?usp=drive_link" target="_blank" rel="noopener" class="btn btn-primary">View Projects</a>
+        <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNjEyIDc5MiBdIC9QYXJlbnQgOCAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNiAwIG9iago8PAovUGFnZU1vZGUgL1VzZU5vbmUgL1BhZ2VzIDggMCBSIC9UeXBlIC9DYXRhbG9nCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9BdXRob3IgKFwoYW5vbnltb3VzXCkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjA5MDkwOTQ1MzQrMDAnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjA5MDkwOTQ1MzQrMDAnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKFwoYW5vbnltb3VzXCkpIC9UcmFwcGVkIC9GYWxzZQo+PgplbmRvYmoKOCAwIG9iago8PAovQ291bnQgMSAvS2lkcyBbIDUgMCBSIF0gL1R5cGUgL1BhZ2VzCj4+CmVuZG9iago5IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDE2NTYKPj4Kc3RyZWFtCkdhdTBDRC9cLSEmSDg4LjEiJldASDMyLEZbTlhOXCtjcWY2MlQ9YFBRMUFMa2Y0TmRGZkEwX2Y3XzBba1phTSMjJjMhVCYrZ0o3WGNnKkM1Ylc5LmxhL1FlSiUsYnEmYHRKW3QoRFs8OlQmbWR0IzMzXE1wRVFScmwkRysnND9TUkxRQDdhUWM0RnMmU1dhJSkjUUc4OE9RZD5hRWppOE44cXFAbEUhJT5vRF0+W0g7amUxNkItX3MzTW0nQVtiTlNiXFQzWWEyPzBnMlZmWCEwZWE+QShjLmBtXWRGcVYlVUlQOzMsQCg/Qm8rLzNIT2ZDPUosMV5RNDo4RyY/QSRLRjZbM01kQF07VmgvUD8ydTt1a0lqXVVrU21WR2BzWGwpR0VlIWU6WXA3aV9zOygrX2BzcE5HQVNaM0tBY2lwaC1HcFozOCMsZ2ZSb2wxJSFPRnBAIU5TXEhXVi5aMExDblhXVlNeJCNpZXIyWkFsdU5FcEYsPDN1XDBAWj00XSErVk5ZODhEXSdkMUIwdDRcPDpjKEJwL0wkNkhcciM+VC5KIjdmKl0/UChaOF9FODBnIkZCUEtDaD9UPj9IYjcjQjcpY0U5PVE/YGdVWlpZVF5Hc0I6PSM5Pl8lcCc4IiFDY3QnN2NhLzRocCJIWEpkTywqKlc4Iz5TYTYqTGFgS0ZZbyphWV9MW3NgYjxFZj5xPXJrNXRsRWNgVlNbMzhMNkNHa25WTlNrRGQxanRjY21xcExVSW5JMXFbU0Y6V1QjMTUiRSY3JzgjOVxrKl5nJ0JBND4oJihUJEs4cjYnRihPZlRzMihKI1NMSl0tSkopPm5BV2wsNmQzLVIoI1ROQnVYcCNnNCFSUSZOYGpCVEIpI2FWNy9NcFJLKjZJV0giYSpcR09ZZSR1O0UlaTtgdWgjWUdeUDlqKTUkVlQhKGdLVEE6VWImTVRAUl9WMFIrQ2AtJlFgWUFkU2YuP3I9SnFIKnRXRixUTlhtSzpvMFEjJDFAcDYuc20rYC4lSzI0Yy4lPy1hOl1YbjBqOkpKUjU1UGAvLz9hQTtIcypfSVA3LC07IShxISxtKVhhSVBYTDdvQlhFKDlaLzZUJEkkKzJrUzhnQ2BoMitAOFtPPGdCRkJZdDxcI0ZYa0xDLCc1Ly51Ky91RzcpW09RQmlLLEFfKGZbK05XViVuXzNTamVLPUoyImhnRHBuODZpI3U4R09PbTZdXi0rR2huLlJTRF5QISMkZ1sscF4iMVVoUUAhOzpzSFczVW9xWm1zalBVV1E4LkIjLTxeIzxxImAjI2tnLUFTJ29ZQTptLyZ1QVJXP2skKCRuZDpuP1ZhO1RtMVRccXRgTCgsIlJhbUAjPDw7ODYyO3Rgc0FrZVc9J1dvMmouZyFFIklTQzxiKU5QWUJYJDRqWTRUSjZ1O1IuXyMha1c6WV1faTZbKEBpTTFPSVcrSCN0JWYsOm9kSDJuN2onUi44UDhELGB1XEAlYGVaWEJzXERYOCtbKzooVytLU0tVVGhnbC9IQk05dTBMS2FYU2lgaUNqTjpQWGMpTWdVdWFCXEEqbmdmMDBKWWUjRWoiWjhVK1MqaGxmZDNLYmBMKUI0OjBcMWFmbzsxVk5sKy49J2pgUWdrJ1xBVVBKUDhDKWZUa2MoQyhiWHFtXTNzZCJQc0M1YG5oLkxsNVlYKWBHTE1WcVF0YT9iSkNAUFYiW0tVQSdeUyhaLDpJVlxKXTxIPUJ1XDooOW9gQCtIP1cmJVdYXCF0InRdN00lSyMsXWwibnEmcXVHTzI8aCFDXmYhNkEkaHFdNjpEPWNhTjAiaElVaFU+JyNWLGVYM0Jma09qbUhjYTYoLTZYOzJtVlVlblI6IiY7JkkiVWxTZUFHPFU5KlcxJkBacW8vRydCN0lFXGA4UVAkakRyIWJzUiw/SGw1V1ByUV5QVkBkL0YjSUVwTFVtT29EOHRyNUByR2lrTU8oKjNFOmRTKCVQSENEVG1KaEgnaEN0W10hPD5KIi1ETGNYIVtxXUdjIm1IWzMyUS5AZjNmQkJPLFprclFgIkQ9WCNIMF1WT3BpSFRqSjJUM0B1YWZFTkZpRjhwXD5XVi8hP2duXVNDTCs+UCdARUEtSihuKEUrTW87LyZcWWtVaSpWTXIjZlU3VjI2bDleWkchTCsoI0dWa1opMU5eYkZaLVQzO09eJ2lDVz5+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDEwCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTEyIDAwMDAwIG4gCjAwMDAwMDAyMTkgMDAwMDAgbiAKMDAwMDAwMDMzMSAwMDAwMCBuIAowMDAwMDAwNDQ2IDAwMDAwIG4gCjAwMDAwMDA2MzkgMDAwMDAgbiAKMDAwMDAwMDcwNyAwMDAwMCBuIAowMDAwMDAwOTg3IDAwMDAwIG4gCjAwMDAwMDEwNDYgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8ODllNzNlMmZiOTBlZDJkNzI3YWY0NDM0ZTI4NDk1YWE+PDg5ZTczZTJmYjkwZWQyZDcyN2FmNDQzNGUyODQ5NWFhPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA3IDAgUgovUm9vdCA2IDAgUgovU2l6ZSAxMAo+PgpzdGFydHhyZWYKMjc5MwolJUVPRgo=" download="Arfa_Eman_Resume.pdf" class="btn btn-ghost">Download Resume</a>
       </div>
     </div>
     <div class="editor">
@@ -408,6 +473,7 @@ footer .heart{color:var(--pink);}
       <p>I'm <strong>Arfa Eman</strong>, a BSCS undergrad at <strong>Islamia University of Bahawalpur, RYK Campus</strong>, currently in my <strong>7th semester</strong>. Over the past few months I've been deep in self-practice, building real ASP.NET MVC projects end-to-end — database, backend, and UI.</p>
       <p>My day-to-day stack is <strong>.NET MVC</strong>, but frontend is where I genuinely enjoy the work — turning a plain CRUD screen into something that feels premium and intentional is my favorite part of any build.</p>
       <p>Right now I'm building <strong>FabricStock</strong>, a full inventory management system for the fabric and textile trade, as a serious self-practice project alongside my coursework.</p>
+      <p>Beyond backend systems, I also design and build <strong>attractive, user-friendly websites</strong> — so clients get software that works well and looks the part too.</p>
     </div>
     <div class="fact-card reveal">
       <div class="fact">
@@ -492,34 +558,15 @@ footer .heart{color:var(--pink);}
           <span class="tag">Entity Framework</span>
           <span class="tag">Bootstrap 5</span>
         </div>
-        <a href="#" class="project-link">View Case Study →</a>
+        <a href="https://drive.google.com/drive/folders/19iJG0hQelVF9HAvemzdAbyphq91dhT6e?usp=drive_link" target="_blank" rel="noopener" class="project-link">View Case Study →</a>
       </div>
     </div>
 
-    <div class="project-card reveal">
-      <div class="project-top"><span>&lt;ProjectTwo/&gt;</span></div>
-      <div class="project-body">
-        <h3>Project Two — replace with your title</h3>
-        <p>Short description of the project goes here: what problem it solves and what you built. Swap this text for your real second project.</p>
-        <div class="tag-row">
-          <span class="tag">Your Stack</span>
-          <span class="tag">Here</span>
-        </div>
-        <a href="#" class="project-link">View Project →</a>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-top"><span>&lt;ProjectThree/&gt;</span></div>
-      <div class="project-body">
-        <h3>Project Three — replace with your title</h3>
-        <p>Another slot ready for your next build. Add a live link or GitHub repo once it's ready to share.</p>
-        <div class="tag-row">
-          <span class="tag">Your Stack</span>
-          <span class="tag">Here</span>
-        </div>
-        <a href="#" class="project-link">View Project →</a>
-      </div>
+    <div class="see-all-card reveal">
+      <div class="see-all-icon">📁</div>
+      <h3>Explore All My Projects</h3>
+      <p>Full source files, documentation, and case studies for everything I've built are organized in one place. Take a closer look at the work behind the portfolio.</p>
+      <a href="https://drive.google.com/drive/folders/19iJG0hQelVF9HAvemzdAbyphq91dhT6e?usp=drive_link" target="_blank" rel="noopener" class="see-all-btn">See All Projects →</a>
     </div>
   </div>
 </section>
@@ -532,7 +579,7 @@ footer .heart{color:var(--pink);}
       <h3>Full Resume, One Click Away</h3>
       <p>Download the complete PDF for full details on my education, projects, and skills.</p>
     </div>
-    <a href="#" class="btn btn-primary">Download PDF</a>
+    <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNjEyIDc5MiBdIC9QYXJlbnQgOCAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNiAwIG9iago8PAovUGFnZU1vZGUgL1VzZU5vbmUgL1BhZ2VzIDggMCBSIC9UeXBlIC9DYXRhbG9nCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9BdXRob3IgKFwoYW5vbnltb3VzXCkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjA5MDkwOTQ1MzQrMDAnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjA5MDkwOTQ1MzQrMDAnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKFwoYW5vbnltb3VzXCkpIC9UcmFwcGVkIC9GYWxzZQo+PgplbmRvYmoKOCAwIG9iago8PAovQ291bnQgMSAvS2lkcyBbIDUgMCBSIF0gL1R5cGUgL1BhZ2VzCj4+CmVuZG9iago5IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDE2NTYKPj4Kc3RyZWFtCkdhdTBDRC9cLSEmSDg4LjEiJldASDMyLEZbTlhOXCtjcWY2MlQ9YFBRMUFMa2Y0TmRGZkEwX2Y3XzBba1phTSMjJjMhVCYrZ0o3WGNnKkM1Ylc5LmxhL1FlSiUsYnEmYHRKW3QoRFs8OlQmbWR0IzMzXE1wRVFScmwkRysnND9TUkxRQDdhUWM0RnMmU1dhJSkjUUc4OE9RZD5hRWppOE44cXFAbEUhJT5vRF0+W0g7amUxNkItX3MzTW0nQVtiTlNiXFQzWWEyPzBnMlZmWCEwZWE+QShjLmBtXWRGcVYlVUlQOzMsQCg/Qm8rLzNIT2ZDPUosMV5RNDo4RyY/QSRLRjZbM01kQF07VmgvUD8ydTt1a0lqXVVrU21WR2BzWGwpR0VlIWU6WXA3aV9zOygrX2BzcE5HQVNaM0tBY2lwaC1HcFozOCMsZ2ZSb2wxJSFPRnBAIU5TXEhXVi5aMExDblhXVlNeJCNpZXIyWkFsdU5FcEYsPDN1XDBAWj00XSErVk5ZODhEXSdkMUIwdDRcPDpjKEJwL0wkNkhcciM+VC5KIjdmKl0/UChaOF9FODBnIkZCUEtDaD9UPj9IYjcjQjcpY0U5PVE/YGdVWlpZVF5Hc0I6PSM5Pl8lcCc4IiFDY3QnN2NhLzRocCJIWEpkTywqKlc4Iz5TYTYqTGFgS0ZZbyphWV9MW3NgYjxFZj5xPXJrNXRsRWNgVlNbMzhMNkNHa25WTlNrRGQxanRjY21xcExVSW5JMXFbU0Y6V1QjMTUiRSY3JzgjOVxrKl5nJ0JBND4oJihUJEs4cjYnRihPZlRzMihKI1NMSl0tSkopPm5BV2wsNmQzLVIoI1ROQnVYcCNnNCFSUSZOYGpCVEIpI2FWNy9NcFJLKjZJV0giYSpcR09ZZSR1O0UlaTtgdWgjWUdeUDlqKTUkVlQhKGdLVEE6VWImTVRAUl9WMFIrQ2AtJlFgWUFkU2YuP3I9SnFIKnRXRixUTlhtSzpvMFEjJDFAcDYuc20rYC4lSzI0Yy4lPy1hOl1YbjBqOkpKUjU1UGAvLz9hQTtIcypfSVA3LC07IShxISxtKVhhSVBYTDdvQlhFKDlaLzZUJEkkKzJrUzhnQ2BoMitAOFtPPGdCRkJZdDxcI0ZYa0xDLCc1Ly51Ky91RzcpW09RQmlLLEFfKGZbK05XViVuXzNTamVLPUoyImhnRHBuODZpI3U4R09PbTZdXi0rR2huLlJTRF5QISMkZ1sscF4iMVVoUUAhOzpzSFczVW9xWm1zalBVV1E4LkIjLTxeIzxxImAjI2tnLUFTJ29ZQTptLyZ1QVJXP2skKCRuZDpuP1ZhO1RtMVRccXRgTCgsIlJhbUAjPDw7ODYyO3Rgc0FrZVc9J1dvMmouZyFFIklTQzxiKU5QWUJYJDRqWTRUSjZ1O1IuXyMha1c6WV1faTZbKEBpTTFPSVcrSCN0JWYsOm9kSDJuN2onUi44UDhELGB1XEAlYGVaWEJzXERYOCtbKzooVytLU0tVVGhnbC9IQk05dTBMS2FYU2lgaUNqTjpQWGMpTWdVdWFCXEEqbmdmMDBKWWUjRWoiWjhVK1MqaGxmZDNLYmBMKUI0OjBcMWFmbzsxVk5sKy49J2pgUWdrJ1xBVVBKUDhDKWZUa2MoQyhiWHFtXTNzZCJQc0M1YG5oLkxsNVlYKWBHTE1WcVF0YT9iSkNAUFYiW0tVQSdeUyhaLDpJVlxKXTxIPUJ1XDooOW9gQCtIP1cmJVdYXCF0InRdN00lSyMsXWwibnEmcXVHTzI8aCFDXmYhNkEkaHFdNjpEPWNhTjAiaElVaFU+JyNWLGVYM0Jma09qbUhjYTYoLTZYOzJtVlVlblI6IiY7JkkiVWxTZUFHPFU5KlcxJkBacW8vRydCN0lFXGA4UVAkakRyIWJzUiw/SGw1V1ByUV5QVkBkL0YjSUVwTFVtT29EOHRyNUByR2lrTU8oKjNFOmRTKCVQSENEVG1KaEgnaEN0W10hPD5KIi1ETGNYIVtxXUdjIm1IWzMyUS5AZjNmQkJPLFprclFgIkQ9WCNIMF1WT3BpSFRqSjJUM0B1YWZFTkZpRjhwXD5XVi8hP2duXVNDTCs+UCdARUEtSihuKEUrTW87LyZcWWtVaSpWTXIjZlU3VjI2bDleWkchTCsoI0dWa1opMU5eYkZaLVQzO09eJ2lDVz5+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDEwCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTEyIDAwMDAwIG4gCjAwMDAwMDAyMTkgMDAwMDAgbiAKMDAwMDAwMDMzMSAwMDAwMCBuIAowMDAwMDAwNDQ2IDAwMDAwIG4gCjAwMDAwMDA2MzkgMDAwMDAgbiAKMDAwMDAwMDcwNyAwMDAwMCBuIAowMDAwMDAwOTg3IDAwMDAwIG4gCjAwMDAwMDEwNDYgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8ODllNzNlMmZiOTBlZDJkNzI3YWY0NDM0ZTI4NDk1YWE+PDg5ZTczZTJmYjkwZWQyZDcyN2FmNDQzNGUyODQ5NWFhPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA3IDAgUgovUm9vdCA2IDAgUgovU2l6ZSAxMAo+PgpzdGFydHhyZWYKMjc5MwolJUVPRgo=" download="Arfa_Eman_Resume.pdf" class="btn btn-primary">Download PDF</a>
   </div>
   <div class="timeline">
     <div class="tl-item reveal">
@@ -557,7 +604,7 @@ footer .heart{color:var(--pink);}
   <h2 class="section-title reveal">Let's Build Something</h2>
   <div class="contact-grid">
     <div class="contact-info reveal">
-      <p>Open to internships, collaborations, and frontend-heavy .NET projects. Reach out — I usually reply quickly.</p>
+      <p>Open to internships, collaborations, and full-stack .NET projects — as well as attractive, user-friendly website builds. Reach out — I usually reply quickly.</p>
       <div class="contact-item">
         <div class="contact-icon">✉</div>
         <div>arfacodes@gmail.com</div>
